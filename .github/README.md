@@ -93,8 +93,8 @@ O servidor deverá ser iniciado e o endereço estará no console.
 
 O projeto conta com uma interface base para uso do componente e conta com três arquivos de dados para teste.
 
-[stargazers_amzn-style-dictionary.json](Componente%20para%20visualizac%CC%A7a%CC%83o%20de%20dados%20temporais%20%208c1d07f3b75d46ccb56d222aa2e31961/stargazers_amzn-style-dictionary.json)
+[stargazers_amzn-style-dictionary.json](../data/stargazers_amzn-style-dictionary.json)
 
-[stargazers_openjdk-jfx.json](Componente%20para%20visualizac%CC%A7a%CC%83o%20de%20dados%20temporais%20%208c1d07f3b75d46ccb56d222aa2e31961/stargazers_openjdk-jfx.json)
+[stargazers_openjdk-jfx.json](../data/stargazers_openjdk-jfx.json)
 
-[stargazers_npkgz-cli-progress.json](Componente%20para%20visualizac%CC%A7a%CC%83o%20de%20dados%20temporais%20%208c1d07f3b75d46ccb56d222aa2e31961/stargazers_npkgz-cli-progress.json)
+[stargazers_npkgz-cli-progress.json](../data/stargazers_npkgz-cli-progress.json)
