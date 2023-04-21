@@ -57,17 +57,16 @@ const agruparDados = (dados, agrupamento) => {
 }
 
 const normalizarDados = (dados, escala) => {
-  // Normalizar por escala logarítmica ou linear
-  if (escala === 'log') {
-    const logData = dados.map((value) => {
-      if (value > 0) {
-        return Math.log(value);
-      } else {
-        return null; // ou qualquer outro valor que você possa querer atribuir ao elemento inválido
-      }
-    });
-    return logData;
+
+
+  // Normalizar valores em dados por escala logarítmica ou linear
+  dados[0].data.forEach((dado) => {
+    if (escala === 'log') {
+      dado.y = Math.log(dado.y);
+    }
   }
+  );
+
 }
 
 const GraficoDeLinhas = ({ data, scale }) => (
@@ -139,7 +138,7 @@ const GraficoDeLinhas = ({ data, scale }) => (
 
 export function GraficoEstrelas(props) {
   const dadosAgrupados = agruparDados(props.estrelas, props.agrupamento);
-  const dadosNormalizados = normalizarDados(dadosAgrupados[0].data, props.escala);
+  const dadosNormalizados = normalizarDados(dadosAgrupados, props.escala);
   return (
     <div style={{ width: '80vw', height: '50vh' }}>
       <GraficoDeLinhas data={dadosAgrupados} scale={props.escala} />
