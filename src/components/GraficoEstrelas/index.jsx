@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ResponsiveLine } from '@nivo/line';
@@ -13,6 +12,7 @@ import { ResponsiveLine } from '@nivo/line';
 
 const agruparDados = (dados, agrupamento) => {
   let data = [];
+  
   const dadosAgrupados = dados.reduce((acc, dado) => {
     if (agrupamento === 'dia') {
       data = dado.starred_at.toLocaleDateString();
@@ -63,6 +63,14 @@ const normalizarDados = (dados, escala) => {
     }
   }
   );
+
+  // ordernar por data ascedente
+  dados[0].data.sort((a, b) => {
+    const dataA = new Date(a.x);
+    const dataB = new Date(b.x);
+    return dataA - dataB;
+  });
+  
   return dados;
 }
 
