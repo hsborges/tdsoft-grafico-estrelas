@@ -129,14 +129,13 @@ const GraficoDeLinhas = ({ data }) => (
       tickValues: [data[0].data[0].x, data[0].data[data[0].data.length - 1].x],
       spaceBetween: 10,
       orient: 'bottom',
-      tickSize: 5,
+      tickSize: 1,
       tickPadding: 5,
       tickRotation: 0,
       legend: 'Data',
       legendOffset: 36,
       legendPosition: 'middle'
     }}
-    enablePointLabel={true}
     enableGridX={false}
     enableGridY={true}
     axisLeft={{
@@ -148,7 +147,6 @@ const GraficoDeLinhas = ({ data }) => (
       legendOffset: -40,
       legendPosition: 'middle'
     }}
-    pointSize={10}
     pointColor={{ theme: 'background' }}
     pointBorderWidth={1}
     pointBorderColor={{ from: 'serieColor' }}
