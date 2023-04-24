@@ -23,10 +23,12 @@ GraficoEstrelas.propTypes = {
   ).isRequired,
   agrupamento: PropTypes.oneOf(['dia', 'semana', 'mes', 'ano']),
   escala: PropTypes.oneOf(['linear', 'log']),
+  cumulativa: PropTypes.bool, // bonus
 };
 
 // Definição dos valores padrão das propriedades.
 GraficoEstrelas.defaultProps = {
   agrupamento: 'dia',
   escala: 'linear',
+  cumulativa: false, // bonus
 };
