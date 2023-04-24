@@ -12,7 +12,7 @@ import { ResponsiveLine } from '@nivo/line';
 
 const agruparDados = (dados, agrupamento) => {
   let data = [];
-  
+
   const dadosAgrupados = dados.reduce((acc, dado) => {
     if (agrupamento === 'dia') {
       data = dado.starred_at.toLocaleDateString();
@@ -70,9 +70,21 @@ const normalizarDados = (dados, escala) => {
     const dataB = new Date(b.x);
     return dataA - dataB;
   });
-  
+
   return dados;
 }
+
+const acumularDados = (dados, cumulativa) => {
+  if (cumulativa) {
+    let acumulado = 0;
+    dados[0].data.forEach((dado) => {
+      acumulado += dado.y;
+      dado.y = acumulado;
+    });
+  }
+  return dados;
+}
+
 
 const GraficoDeLinhas = ({ data }) => (
   <ResponsiveLine
@@ -117,6 +129,12 @@ const GraficoDeLinhas = ({ data }) => (
       tickValues: [data[0].data[0].x, data[0].data[data[0].data.length - 1].x],
       spaceBetween: 10,
       orient: 'bottom',
+      tickSize: 5,
+      tickPadding: 5,
+      tickRotation: 0,
+      legend: 'Data',
+      legendOffset: 36,
+      legendPosition: 'middle'
     }}
     enablePointLabel={true}
     enableGridX={false}
@@ -126,7 +144,7 @@ const GraficoDeLinhas = ({ data }) => (
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: 'count',
+      legend: 'Quantidade de estrelas',
       legendOffset: -40,
       legendPosition: 'middle'
     }}
@@ -134,7 +152,7 @@ const GraficoDeLinhas = ({ data }) => (
     pointColor={{ theme: 'background' }}
     pointBorderWidth={1}
     pointBorderColor={{ from: 'serieColor' }}
-    pointLabelYOffset={-12}
+    pointLabelYOffset={8}
     enableCrosshair={true}
     crosshairType={'x'}
     useMesh={true}
@@ -144,9 +162,11 @@ const GraficoDeLinhas = ({ data }) => (
 export function GraficoEstrelas(props) {
   const dadosAgrupados = agruparDados(props.estrelas, props.agrupamento);
   const dadosNormalizados = normalizarDados(dadosAgrupados, props.escala);
+  const dadosAcumulados = acumularDados(dadosNormalizados, props.cumulativa);
+
   return (
     <div style={{ width: '80vw', height: '50vh' }}>
-      <GraficoDeLinhas data={dadosNormalizados} scale={props.escala} />
+      <GraficoDeLinhas data={dadosAcumulados} scale={props.escala} />
     </div>
   );
 }
